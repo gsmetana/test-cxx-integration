@@ -2,13 +2,38 @@ language: cpp
 compiler:
   - gcc
 env:
+  global:
+    - COVERALLS_SERVICE_NAME=travis-ci
+    - COVERALLS_REPO_TOKEN=NXHsGpmqi6PpZHX8iM3OisE48frajQmFl
+
+    - SCRIPTS=${TRAVIS_BUILD_DIR}/travis
+    - EXTERNALS_DIR=/home/travis/external
+
   matrix:
-    - DEBUG="YES"
-    - DEBUG="NO"
+    - VTK_VERSION=6.0 DEBUG="YES"
+    - VTK_VERSION=6.3 DEBUG="YES"
+    - VTK_VERSION=7.0 DEBUG="YES"
+    - VTK_VERSION=6.0 DEBUG="NO"
+    - VTK_VERSION=6.3 DEBUG="NO"
+    - VTK_VERSION=7.0 DEBUG="NO"
+
+before_install:
+  - export VTK_SOURCE_DIR=$EXTERNALS_DIR/vtk-$VTK_VERSION
+  - export VTK_DIR=$EXTERNALS_DIR/vtk-$VTK_VERSION-build
+  - export TCLLIBPATH=$VTK_DIR/Wrapping/Tcl
+
+install:
+  - $SCRIPTS/travis_build_vtk.sh
+  - $SCRIPTS/travis_before_script_cleanup.sh
+
+cache:
+  directories:
+  - /home/travis/external/vtk-6.0
+  - /home/travis/external/vtk-6.0-build
+  - /home/travis/external/vtk-6.3
+  - /home/travis/external/vtk-6.3-build
 
 before_script:
-  - export COVERALLS_SERVICE_NAME=travis-ci
-  - export COVERALLS_REPO_TOKEN=NXHsGpmqi6PpZHX8iM3OisE48frajQmFl
 
   - mkdir build
   - cd build
