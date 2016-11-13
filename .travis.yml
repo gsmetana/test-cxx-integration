@@ -40,6 +40,12 @@ addons:
     - tk8.5-dev
     - tcllib
     - tklib
+    - gfortran
+    - gcc-4.8
+    - g++-4.8
+
+    sources:
+    - ubuntu-toolchain-r-test
 
 cache:
   directories:
