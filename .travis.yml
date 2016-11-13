@@ -19,6 +19,6 @@ script:
   - make
   - cd ../bin
   - ./Simple
-  - if [ ${DEBUG} == "YES" ];
+  - if [ ${DEBUG} == "YES" ]; then
     make coveralls;
     fi
