@@ -17,8 +17,9 @@ before_script:
 
 script:
   - make
-  - cd ../bin
-  - ./Simple
   - if [ ${DEBUG} == "YES" ]; then
     make coveralls;
     fi
+  - cd ../bin
+  - ./Simple
+
