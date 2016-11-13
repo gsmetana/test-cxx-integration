@@ -3,6 +3,8 @@ compiler:
   - gcc
 env:
   global:
+    - NUM_THREADS=4
+
     - COVERALLS_SERVICE_NAME=travis-ci
     - COVERALLS_REPO_TOKEN=NXHsGpmqi6PpZHX8iM3OisE48frajQmFl
 
@@ -18,6 +20,7 @@ env:
     - VTK_VERSION=7.0 DEBUG="NO"
 
 before_install:
+
   - export VTK_SOURCE_DIR=$EXTERNALS_DIR/vtk-$VTK_VERSION
   - export VTK_DIR=$EXTERNALS_DIR/vtk-$VTK_VERSION-build
   - export TCLLIBPATH=$VTK_DIR/Wrapping/Tcl
