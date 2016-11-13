@@ -1,6 +1,12 @@
 language: cpp
 compiler:
   - gcc
+env:
+  matrix:
+    - CMAKE_ARGS="-DCOVERALLS=ON"
+    - CMAKE_ARGS="-DCOVERALLS=OFF"
+
+
 before_script:
   - mkdir build
   - cd build
