@@ -10,7 +10,7 @@ before_script:
   - mkdir build
   - cd build
   - if [ ${DEBUG} == "YES" ]; then 
-    cmake -DCOVERALLS=ON -DCMAKE_BUILD_TYPE=Debug WITH_UNIT_TESTS=ON ..; else
+    cmake -DCOVERALLS=ON -DCMAKE_BUILD_TYPE=Debug -DWITH_UNIT_TESTS=ON ..; else
     cmake ..;
     fi
 
