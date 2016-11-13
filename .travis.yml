@@ -29,6 +29,18 @@ install:
   - $SCRIPTS/travis_build_vtk.sh
   - $SCRIPTS/travis_before_script_cleanup.sh
 
+addons:
+  apt:
+    packages:
+    - curl
+    - cmake
+    - tcl8.5
+    - tk8.5
+    - tcl8.5-dev
+    - tk8.5-dev
+    - tcllib
+    - tklib
+
 cache:
   directories:
   - /home/travis/external/vtk-6.0

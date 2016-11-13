@@ -12,6 +12,8 @@ if $PREBUILD_ITKVTK; then
     elif [ "$VTK_VERSION" == "6.3" ]; then
         vtk_repo_str=" --branch v6.3.0 https://github.com/Kitware/VTK.git "
         #cmake_arg_str=" $cmake_arg_str -DVTK_WRAP_TCL=1 -DVTK_Group_Imaging=1 -DVTK_Group_Tk=1 "
+    elif [ "$VTK_VERSION" == "7.0" ]; then
+        vtk_repo_str=" --branch v7.0.0 https://github.com/Kitware/VTK.git "
     fi
     if [ -d $VTK_SOURCE_DIR ]; then
         echo $VTK_SOURCE_DIR exists
