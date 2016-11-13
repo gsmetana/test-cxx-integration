@@ -7,6 +7,9 @@ env:
     - DEBUG="NO"
 
 before_script:
+  - export COVERALLS_SERVICE_NAME=travis-ci
+  - export COVERALLS_REPO_TOKEN=abc12345
+
   - mkdir build
   - cd build
   - if [ ${DEBUG} == "YES" ]; then 
@@ -14,12 +17,13 @@ before_script:
     cmake ..;
     fi
 
-
 script:
   - make
+  - cd ../bin
+  - ./Simple
+
+after_success:
   - if [ ${DEBUG} == "YES" ]; then
     make coveralls;
     fi
-  - cd ../bin
-  - ./Simple
 
