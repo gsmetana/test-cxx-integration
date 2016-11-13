@@ -3,15 +3,22 @@ compiler:
   - gcc
 env:
   matrix:
-    - CMAKE_ARGS="-DCOVERALLS=ON"
-    - CMAKE_ARGS="-DCOVERALLS=OFF"
-
+    - DEBUG="YES"
+    - DEBUG="NO"
 
 before_script:
   - mkdir build
   - cd build
-  - cmake ..
+  - if [ ${DEBUG} == "YES" ]; then 
+    cmake -DCOVERALLS=ON -DCMAKE_BUILD_TYPE=Debug WITH_UNIT_TESTS=ON ..; else
+    cmake ..;
+    fi
+
+
 script:
   - make
   - cd ../bin
   - ./Simple
+  - if [ ${DEBUG} == "YES" ];
+    make coveralls;
+    fi

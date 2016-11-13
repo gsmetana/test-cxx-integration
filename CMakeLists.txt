@@ -11,8 +11,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 option(COVERALLS "Generate coveralls data" OFF)
 
 
-option(WITH_TEST_PROGRAMS "Turns on compilation of tester programs" ON)
-option(WITH_UNIT_TESTS "Turn on compilation of unit test" ON)
+option(WITH_TEST_PROGRAMS "Turns on compilation of tester programs" OFF)
+option(WITH_UNIT_TESTS "Turn on compilation of unit test" OFF)
 
 # Turn on coverage if we're running coveralls!
 if (COVERALLS)
@@ -31,9 +31,16 @@ set(LIB_SRC
   "${PROJECT_SOURCE_DIR}/simpleLib/simpleWe.cpp")
 
 set(LIB_HDR "")
+include_directories(
+	${PROJECT_SOURCE_DIR}
+	${CMAKE_CURRENT_BINARY_DIR}
+	${PROJECT_SOURCE_DIR}/src
+	${PROJECT_SOURCE_DIR}/simpleLib)
 
 add_library(simpleLib STATIC ${LIB_SRC} ${LIB_HDR})
 
+add_executable (Simple ${PROJECT_SOURCE_DIR}/src/simple.cxx)
+target_link_libraries (Simple simpleLib)
 
 if (WITH_UNIT_TESTS)
 
